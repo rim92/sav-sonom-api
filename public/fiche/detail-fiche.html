@@ -1,0 +1,236 @@
+
+
+
+
+
+
+
+
+<section>
+ <!-- Form Elements -->
+
+                  <div class="card">
+                    <div ng-if="success==true" class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Modification réussie !</strong> 
+</div>
+
+          
+					  <br>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Modifier Fiche Réparation</h3>
+                    </div>
+                    <div class="card-body">
+                      <form class="form-horizontal">
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Nom</b></label>
+                          <div class="col-sm-8">
+                     <input type="text" name="nom"  ng-if="fichediag.nom != null"  ng-init="fchForm.nom =fichediag.nom" ng-model="fchForm.nom" class="form-control"  />
+                          </div>
+                        </div>
+                       
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Prénom</b></label>
+                          <div class="col-sm-8">
+                                                 
+							  <input type="text" name="prenom"  ng-if="fichediag.prenom != null" ng-init="fchForm.prenom =fichediag.prenom"   ng-model="fchForm.prenom"  class="form-control"  />
+                          </div>
+                        </div>
+						     <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Tel</b></label>
+                          <div class="col-sm-8">
+                	  <input type="text" name="tel"  ng-if="fichediag.tel != null" ng-init="fchForm.tel =fichediag.tel" ng-model="fchForm.tel"  class="form-control"  />
+                          </div>
+                        </div>
+						  
+						    <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Email</b></label>
+                          <div class="col-sm-8">
+                      
+							  <input type="text" name="email" ng-if="fichediag.email != null" ng-init="fchForm.email =fichediag.email"  ng-model="fchForm.email"  class="form-control"  />
+                          </div>
+                        </div>
+						     <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Désignation</b></label>
+                          <div class="col-sm-8">
+
+							  <input type="text" name="designation" ng-if="fichediag.designation != null" ng-init="fchForm.designation =fichediag.designation"  ng-model="fchForm.designation"  class="form-control"  value="{{fichediag.designation}}" />
+                          </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Marque</b></label>
+                          <div class="col-sm-8">
+                        <select name="marque" class="form-control" ng-if="fichediag.marque != null" ng-init="fchForm.marque =fichediag.marque"  ng-model="fchForm.marque" value="{{fichediag.marque}}">
+                          <option>YAMAHA</option>
+                          <option>SOUNDKING</option>
+                            <option>STUDIOMASTER</option>
+                                <option>VERSE</option>
+                                    <option>CASIO</option>
+                                         <option>LINE 6</option>
+                                              <option>SKYLARK</option>
+                                               <option>SHUBERT</option>
+                                                  <option>OMNITRONIC</option>
+                                                     <option>CARLSBRO</option>
+                                                        <option>AUTRE</option>
+                                                        
+
+                        </select>
+
+
+
+                                  <select name="marque" class="form-control" ng-if="fichediag.marque == null"  ng-model="fchForm.marque" >
+                          <option>YAMAHA</option>
+                          <option>SOUNDKING</option>
+                            <option>STUDIOMASTER</option>
+                                <option>VERSE</option>
+                                    <option>CASIO</option>
+                                         <option>LINE 6</option>
+                                              <option>SKYLARK</option>
+                                               <option>SHUBERT</option>
+                                                  <option>OMNITRONIC</option>
+                                                     <option>CARLSBRO</option>
+                                                        <option>AUTRE</option>
+                                                        
+
+                        </select>
+                          </div>
+                        </div>
+						
+						     
+						  <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Date d'achat</b></label>
+                          <div class="col-sm-8">
+                        <input type="text" name="date_achat"  ng-if="fichediag.date_achat == null"  ng-model="fchForm.date_achat" value="{{fichediag.date_achat}}" class="form-control"  />
+							    <input type="text" name="date_achat" ng-if="fichediag.date_achat != null" ng-init="fchForm.date_achat =fichediag.date_achat"  ng-model="fchForm.date_achat" value="{{fichediag.date_achat}}" class="form-control"  />
+                          </div>
+                        </div>
+						  
+						      <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Num série</b></label>
+                          <div class="col-sm-8">
+                          <input  ng-if="fichediag.num_serie == null"  name="num_serie" class="form-control"  ng-model="fchForm.num_serie"   >
+			
+            <input  ng-if="fichediag.num_serie !=null"   name="num_serie" class="form-control" ng-model="fchForm.num_serie" ng-init="fchForm.num_serie =fichediag.num_serie"  >
+                          </div>
+                        </div>
+						     
+						       <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>Garantie</b> </label>
+                               <div class="col-sm-7">
+<!--
+                              <input type="hidden" name="garantie" ng-if="fichediag.garantie == null" ng-model="fchForm.garantie" value="{{fichediag.garantie}}"  /> 
+							  <input type="hidden" name="garantie"  ng-if="fichediag.garantie != null" ng-init="fchForm.garantie =fichediag.garantie" ng-model="fchForm.garantie" value="{{fichediag.garantie}}"  /> 
+-->
+
+
+ <input type="hidden" id="optionsRadios5" name="garantie" ng-if="fichediag.garantie == null"  ng-model="fchForm.garantie" type="text" value="{{fichediag.garantie}}" class="form-control" />
+							    <input type="hidden" id="optionsRadios5" name="garantie" ng-if="fichediag.garantie != null"  ng-model="fchForm.garantie" ng-init="fchForm.garantie =fichediag.garantie" type="text" value="{{fichediag.garantie}}" class="form-control"  />
+
+
+
+
+ <input id="optionsRadios3" type="radio" name="garantie"  ng-init="fchForm.garantie =fichediag.garantie"    value="Yes"  ng-model="fchForm.garantie" >
+                            
+                              <label for="optionsRadios5">Yes</label>
+						    <input id="optionsRadios4" type="radio" name="garantie" ng-init="fchForm.garantie =fichediag.garantie"   value="No"  ng-model="fchForm.garantie"  >
+                              <label for="optionsRadios5">Non</label>  
+							  
+                         </div>
+                        </div>
+						  
+						       <div class="line"></div>
+						    <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Panne à signaler</b> </label>
+                          <div class="col-sm-8">
+
+							  <select   name="panne_client" ng-if="fichediag.panne_client != null" ng-init="fchForm.panne_client =fichediag.panne_client"  ng-model="fchForm.panne_client" value="{{fichediag.panne_client}}"  class="form-control" >
+							  <option value="Power Supply">Power Supply</option>
+								  <option value="Noise">Noise</option>
+								    <option value="Input channel">Input channel</option>
+								  <option value="Output channel">Output channel</option>
+								   <option value="not working">Not working</option>
+								  <option value="Other" >Other</option>
+								  
+							  </select>	
+					  
+		               </div>
+                        </div>
+	  
+                        <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>J'autorise la réparation intégrale</b> </label>
+                            <div class="col-sm-7">                           
+						    <input type="hidden" id="optionsRadios2" name="reparation" ng-if="fichediag.reparation == null"  ng-model="fchForm.reparation" type="text" value="{{fichediag.reparation}}" class="form-control" />
+							    <input type="hidden" id="optionsRadios2" name="reparation" ng-if="fichediag.reparation != null"  ng-model="fchForm.reparation" ng-init="fchForm.reparation =fichediag.reparation" type="text" value="{{fichediag.reparation}}" class="form-control"  />
+
+							  <input id="op1" type="radio" ng-init="fchForm.reparation =fichediag.reparation" value="Oui" name="reparation"  ng-model="fchForm.reparation">
+                              <label for="optionsRadios2">Oui</label>
+                         
+						    <input id="op2" type="radio"  ng-init="fchForm.reparation =fichediag.reparation"  value="Non" name="reparation" ng-model="fchForm.reparation">
+                              <label for="optionsRadios2">Non</label>
+                              
+                         </div>
+                        </div>
+						  <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>Frais diagnostic</b> </label>
+                             <div class="col-sm-7">
+<!--
+							  <input type="text" name="frais_diagnostic"  ng-if="fichediag.reparation == null" ng-model="fchForm.frais_diagnostic" value="{{fichediag.frais_diagnostic}}" class="form-control"/>
+							  <input type="text" name="frais_diagnostic"  ng-if="fichediag.reparation != null" ng-init="fchForm.frais_diagnostic =fichediag.frais_diagnostic"  ng-model="fchForm.frais_diagnostic" value="{{fichediag.frais_diagnostic}}" class="form-control " />-->
+
+							    <div class="col-sm-7">
+                           <select name="frais_diagnostic" class="form-control"  ng-if="fichediag.frais_diagnostic != null" ng-init="fchForm.frais_diagnostic =fichediag.frais_diagnostic"  ng-model="fchForm.frais_diagnostic" value="{{fichediag.frais_diagnostic}}" >
+							<option value="Payé">Payé</option>
+							<option value="Non payé">Non payé</option>
+							  </select>
+                         </div>
+							</div>
+                        </div>
+						
+					       <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Prise en charge par Mr:</b></label>
+                        <div class="col-sm-8">
+                       <select name="personnel" ng-if="fichediag.personnel != null" ng-model="fichediag.personnel" name="personnel" ng-init="ficheForm.personnel =fichediag.personnel" class="form-control" >
+							   <option value="Firas"> Firas</option>
+                <option value="Badr"> Badr</option>
+						    <option value="Anouar" >Anouar</option>
+							  </select>
+                          </div>
+                        </div>
+						  
+                       <div class="line"></div>
+                        <div class="form-group row">
+                          <div class="col-sm-8" style="float:right">
+                     
+                            <button class="btn btn-success" ng-click="update(fichediag._id)">Mettre à jour </button>
+                              <button  class="btn btn-secondary" ng-click="retour()" style="color:white !important">Retour</button>
+                                 
+                          </div>
+                        </div>
+                      </form>
+                      
+                    </div>
+                  </div>
+              
+              </div>
+            </div>
+
+
+
+
+          </section>
+          <!-- Page Footer-->
+         
+        </div>
+      </div>
+
+   

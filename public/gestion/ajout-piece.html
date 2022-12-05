@@ -1,0 +1,110 @@
+
+
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-target=".navbar-collapse" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"> Sonomusic</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+		  <li><a href="/#/fiche">Ajouter Fiche réparation</a></li>
+          <li class="active"><a href="/#/fiches">Liste réparations</a></li>
+		  <li><a href="/#/pieces">Mes Commandes </a></li>
+          </ul>
+				 <a style="float:right;padding-top: 15px;padding-bottom: 15px;color:#9d9d9d;text-decoration:none" n href="/#/logout" ng-click="logout()" class="active">Déconnexion</a>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div>
+
+
+
+<section >
+
+
+ 
+ <!-- Form Elements -->
+                  <div class="card">
+					  <br>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Etat Pièce sur commande</h3>
+                    </div>
+                    <div class="card-body">
+                      <form class="form-horizontal">
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Désignation</b></label>
+                          <div class="col-sm-8">
+                            <input type="text" ng-model="piece.designation_piece" class="form-control">
+                          </div>
+                        </div>
+                       
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Référence</b></label>
+                          <div class="col-sm-8">
+                            <input type="text" ng-model="piece.reference_piece" class="form-control">
+                          </div>
+                        </div>
+					
+						  
+						    
+						
+						      <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Marque</b></label>
+                          <div class="col-sm-8">
+                        <select ng-model="piece.marque" class="form-control">
+                          <option>YAMAHA</option>
+                          <option>SOUNDKING</option>
+                          <option>CARLSBRO</option>
+                         <option>STUDIOMASTER</option>
+                        </select>
+                          </div>
+                        </div>
+						 
+                          <div class="line"></div>
+                          <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Disponibilité auprès du fournisseur</b></label>
+                          <div class="col-sm-8">
+                           <select ng-model="piece.choix" class="form-control">
+                          <option value="A commander">A commander</option>
+                          <option value="en cours">commande en cours de traitement </option>
+                          <option value="Non dispo">Non disponible</option>
+                        </select>
+                          </div>
+						  
+						  
+                      
+                        </div>
+
+
+                         <div class="line"></div>
+                   
+					   <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Nombre de pièces à commander</b></label>
+                          <div class="col-sm-8">
+                            <input type="text" ng-model="piece.qte_piece" class="form-control">
+                          </div>
+                        </div>
+						 <div class="line"></div>
+                        <div class="form-group row">
+                          <div class="col-sm-8" style="float:right">
+                            <button type="reset" class="btn btn-secondary" style="color:white !important">Cancel</button>
+                            <button type="button" class="btn btn-success" ng-click="createPiece()">Ajouter</button>
+                          </div>
+                        </div>
+					      </form>
+				
+              </div>
+                  </div>
+              
+              </div>
+            </div>
+
+
+
+
+          </section>

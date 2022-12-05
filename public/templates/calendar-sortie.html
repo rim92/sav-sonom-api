@@ -1,0 +1,57 @@
+ 
+<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">-->
+<style>  .modal-dialog{  position: absolute!important;
+top: 50% !important;
+left: 50% !important;
+transform: translate(-50%, -50%) !important;
+width: 50% !important;
+    } </style>
+<div class="modal-header">
+    <h3>RAPPORT </h3>
+</div>
+<form  name="form.userForm"  ng-submit="updateDateSortie(id)" >
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label>Date de sortie</label>
+            <input type="date" name="date_sortie" class="form-control" ng-model="userForm.date_sortie" required>
+        </div>
+		
+		 <div class="form-group">
+            <label>Statut</label>
+           <select  name="statut" class="form-control" ng-model="userForm.statut">
+			 <option>PENDING</option>
+			   <option>COMPLETED</option>
+			 </select>
+        </div>
+		
+		 <div class="form-group">
+            <label>Priorité</label>
+           <select  name="priority" class="form-control" ng-model="userForm.priority">
+			 <option>HIGH</option>
+			   <option>LOW</option>
+			 </select>
+        </div>
+		
+		 <div class="form-group">
+            <label>Réréparation</label>
+           <select  name="rerepare" class="form-control" ng-model="userForm.rerepare">
+			 <option>YES</option>
+			   <option>NO</option>
+			 </select>
+        </div>
+		
+	
+
+		<strong>Designation:</strong>{{fichediag.designation}} </br>
+	<strong>Panne signalée:</strong>{{fichediag.panne}} </br>
+<strong>Diagnostic:</strong>{{fichediag.diagnostic}} </br>
+<strong>Prix de réparation de l'ingénieur:</strong> {{fichediag.prix_reparation}} </br>
+      
+       
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" >Ajouter rapport</button>
+        <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+    </div>
+</form>

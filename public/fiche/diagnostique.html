@@ -1,0 +1,190 @@
+
+
+
+
+
+
+          
+
+
+<section>
+ <!-- Form Elements -->
+
+<div ng-if="success==true" class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Modification réussie !</strong> 
+</div>
+                  <div class="card">
+					  <br>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Modifier Fiche Réparation</h3>
+                    </div>
+                    <div class="card-body">
+                      <form class="form-horizontal">
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Numéro de série</b></label>
+                          <div class="col-sm-8">
+                              <input type="text" name="num_serie"  ng-if="fichediag.num_serie == null"   ng-model="clientForm.num_serie" class="form-control"  />
+                     <input type="text" name="num_serie"  ng-if="fichediag.num_serie != null"  ng-init="clientForm.num_serie =fichediag.num_serie" ng-model="clientForm.num_serie" class="form-control"  />
+                          </div>
+                        </div>
+                       
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Panne signalée</b></label>
+                          <div class="col-sm-8">
+                             <input type="text" name="panne_signaler"  ng-if="fichediag.panne_signaler == null"   ng-model="clientForm.panne_signaler" class="form-control"  />
+                        <input type="text" name="panne_signaler"  ng-if="fichediag.panne_signaler != null"  ng-init="clientForm.panne_signaler =fichediag.panne_signaler" ng-model="clientForm.panne_signaler" class="form-control"  />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Diagnostique </b></label>
+                          <div class="col-sm-8">
+                         <input type="text" name="diagnostic"  ng-if="fichediag.diagnostic == null"    ng-model="clientForm.diagnostic"  class="form-control"  />                          
+							  <input type="text" name="diagnostic"  ng-if="fichediag.diagnostic != null" ng-init="clientForm.diagnostic =fichediag.diagnostic"   ng-model="clientForm.diagnostic"  class="form-control"  />
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Prix reparation</b></label>
+                          <div class="col-sm-8">
+                           <input type="text" name="prix_reparation"  ng-if="fichediag.prix_reparation == null"  ng-model="clientForm.prix_reparation"  class="form-control"  />
+                	  <input type="text" name="prix_reparation"  ng-if="fichediag.prix_reparation != null" ng-init="clientForm.prix_reparation =fichediag.prix_reparation" ng-model="clientForm.prix_reparation"  class="form-control"  />
+                          </div>
+                        </div>
+				
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Remarques / Observation</b></label>
+                          <div class="col-sm-8">
+                       	  <textarea type="text" name="observation" ng-if="fichediag.observation == null"   ng-model="clientForm.observation"  class="form-control"  ></textarea>
+							  <textarea type="text" name="observation" ng-if="fichediag.observation != null" ng-init="clientForm.observation =fichediag.observation"  ng-model="clientForm.observation"  class="form-control"  ></textarea>
+                          </div>
+                        </div>
+
+                        <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Statut</b></label>
+                          <div class="col-sm-8">
+
+                               <select name="statut" class="form-control" ng-if="fichediag.statut == null"   ng-model="clientForm.statut" >
+                         <option>PENDING</option>
+			   <option>COMPLETED</option>
+                                                        
+
+                        </select>
+                        <select name="statut" class="form-control" ng-if="fichediag.statut != null" ng-init="clientForm.statut =fichediag.statut"  ng-model="clientForm.statut" value="{{fichediag.statut}}">
+                         <option>PENDING</option>
+			   <option>COMPLETED</option>
+                                                        
+
+                        </select>
+                          </div>
+                        </div>
+						
+					
+						 
+						       <div class="line"></div>
+						    <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Réréparation</b> </label>
+                          <div class="col-sm-8">
+
+
+							  <select   name="rerepare" ng-if="fichediag.rerepare == null" ng-model="clientForm.rerepare"   class="form-control" >
+							  <option value="YES">YES</option>
+								  <option value="NO">NO</option>
+								
+								  
+							  </select>	
+							  <select   name="rerepare" ng-if="fichediag.rerepare != null" ng-init="clientForm.rerepare =fichediag.rerepare"  ng-model="clientForm.rerepare" value="{{fichediag.rerepare}}"  class="form-control" >
+							  <option value="YES">YES</option>
+								  <option value="NO">NO</option>
+								
+								  
+							  </select>	
+					  
+		               </div>
+                        </div>
+
+
+		 
+						       <div class="line"></div>
+						    <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Priorité</b> </label>
+                          <div class="col-sm-8">
+
+							  <select   name="priority" ng-if="fichediag.priority == null"   ng-model="clientForm.priority"  class="form-control" >
+				 <option>HIGH</option>
+			   <option>LOW</option>
+								
+								  
+							  </select>	
+					  
+
+            		  <select   name="priority" ng-if="fichediag.priority != null" ng-init="clientForm.priority =fichediag.priority"  ng-model="clientForm.priority" value="{{fichediag.priority}}"  class="form-control" >
+				 <option>HIGH</option>
+			   <option>LOW</option>
+								
+								  
+							  </select>	
+		               </div>
+                        </div>
+
+
+
+ <div class="line"></div>
+                        <div class="form-group row">
+                  		    <label class="col-sm-2 form-control-label">Etat fiche </label>
+                          <div class="col-sm-7">
+                             	<select class="form-control" name="etat" ng-model="clientForm.etat"   >
+			<option value="devis">Devis</option>
+			<option value="traité">Cloturé</option>
+			
+			</select>
+                         </div>
+                        </div>
+
+                        <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>J'autorise la réparation intégrale</b> </label>
+                            <div class="col-sm-7">                           
+						    <input type="hidden" id="optionsRadios2" name="reparation" ng-if="fichediag.reparation == null"  ng-model="clientForm.reparation" type="text" value="{{fichediag.reparation}}" class="form-control" />
+							    <input type="hidden" id="optionsRadios2" name="reparation" ng-if="fichediag.reparation != null"  ng-model="clientForm.reparation" ng-init="clientForm.reparation =fichediag.reparation" type="text" value="{{fichediag.reparation}}" class="form-control"  />
+
+							  <input id="op1" type="radio" ng-init="clientForm.reparation =fichediag.reparation" value="Oui" name="reparation"  ng-model="clientForm.reparation">
+                              <label for="optionsRadios2">Oui</label>
+                         
+						    <input id="op2" type="radio"  ng-init="clientForm.reparation =fichediag.reparation"  value="Non" name="reparation" ng-model="clientForm.reparation">
+                              <label for="optionsRadios2">Non</label>
+                              
+                         </div>
+                        </div>
+						  <div class="line"></div>
+
+
+              
+                      
+                       <div class="line"></div>
+                        <div class="form-group row">
+                          <div class="col-sm-8" style="float:right">
+                     
+                            <button class="btn btn-success" ng-click="subUpdateForm(fichediag._id)">Mettre à jour </button>
+                              <button  class="btn btn-secondary" ng-click="retour()" style="color:white !important">Retour</button>
+                                 
+                          </div>
+                        </div>
+                      </form>
+                      
+                    </div>
+                  </div>
+              
+              </div>
+            </div>
+
+
+
+
+          </section>
+          <!-- Page Footer-->
+         
+        </div>
+      </div>
+
+   

@@ -1,0 +1,639 @@
+<!--
+ 
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<style>  
+	.modal-dialog{  position: absolute!important;
+top: 50% !important;
+left: 50% !important;
+transform: translate(-50%, -50%) !important;
+width: 50% !important;
+    } </style>
+
+<div class="modal-header">
+    <h3>Fiche diagnostic (Date diagnostic: {{fichediag.date_sortie}} ) </h3>
+</div>
+
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label>Numéro de série</label>&nbsp; {{fichediag.num_serie}}
+      <p></p>
+        </div>
+
+
+        <div class="form-group">
+            <label>Panne signalée:</label> &nbsp;{{fichediag.panne_signaler}}
+         
+           
+        </div>
+ <div class="form-group">
+            <label>Diagnostic </label> &nbsp;{{fichediag.diagnostic}}
+            
+        </div>
+
+   
+		
+		   <div class="form-group">
+            <label>Prix réparation </label>	&nbsp;{{fichediag.prix_reparation}}
+          
+        </div>
+		<div class="form-group">
+            <label>Remarques / Observation</label>&nbsp;{{fichediag.observation}}
+			
+        </div>
+
+
+
+		
+    </div>
+-->
+   
+<!-- Tab links -->
+
+
+<!--
+  <form ng-submit="vm.onSubmit()" name="vm.form" novalidate>
+        <uib-tabset>
+          <uib-tab ng-repeat="tab in vm.tabs"
+               heading="{{tab.title}}"
+               active="tab.active"
+               disable="tab.disabled">
+            <formly-form model="tab.form.model" fields="tab.form.fields" form="vm.form" options="tab.form.options">
+            </formly-form>
+          </uib-tab>
+          <uib-tab heading="Submit">
+            <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Submit</button>
+            <button type="button" class="btn btn-default" ng-click="vm.resetAllForms()">Reset</button>
+          </tab>
+        </tabset>
+      </form>
+      <hr />
+      <h2>Model Value</h2>
+      <pre>{{vm.model | json}}</pre>
+      <h2>Tabs <small>(note, functions are not shown)</small></h2>
+      <pre>{{vm.originalTabs | json}}</pre>
+      <h2>Form</h2>
+      <pre>{{vm.form | json}}</pre>
+    </div>
+
+    <div style="margin-top:30px">
+      <small>
+        This is an example for the
+        <a href="https://formly-js.github.io/angular-formly">angular-formly</a>
+        project made with ♥ by
+        <strong>
+          <span ng-if="!vm.author.name || !vm.author.url">
+            {{vm.author.name || 'anonymous'}}
+          </span>
+          <a ng-if="vm.author.url" ng-href="{{::vm.author.url}}">
+            {{vm.author.name}}
+          </a>
+        </strong>
+        <br />
+        This example is running angular version "{{vm.env.angularVersion}}" and formly version "{{vm.env.formlyVersion}}"
+      </small>
+    </div>
+-->
+<style>
+	
+	.modal-dialog{  position: absolute!important;
+top: 50% !important;
+		line-height: inherit !important;
+left: 50% !important;
+transform: translate(-50%, -50%) !important;
+width: 50% !important;
+		
+    }
+	
+	.modal-footer{
+	text-align: left !important;
+	}
+
+	
+	@media screen and (min-width: 600px)  {
+	.modal-dialog{
+		width: 600px !important;
+	
+	}}
+	
+	@media screen and (min-width: 400px)  {
+	table .table{
+		width: 400px !important;
+	
+	}}
+	
+
+/* Style the tab */
+.tab {
+    overflow: hidden !important
+    border: 1px solid #ccc !important;
+    background-color: #f1f1f1 !important;
+}
+
+/* Style the buttons inside the tab */
+.tab  {
+    background-color: inherit !important;
+    float: left !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    padding: 14px 16px !important;
+    transition: 0.3s !important;
+    font-size: 17px !important;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd !important;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc !important;
+}
+	
+	.actif  {
+    background-color: gainsboro !important;
+} 
+	.actif.active  {
+    background-color: gainsboro !important;
+}
+
+
+/* Style the tab content */
+.tabcontent {
+    display: none !important;
+    padding: 6px 12px !important;
+    border: 1px solid #ccc !important;
+    border-top: none !important;
+}
+</style>
+
+<!--
+  <form name='tab' ng-submit="msg='submited'">
+            <button class="tablinks"  ng-click="tab=1">tab 1</button>
+            <button class="tablinks" ng-click="tab=2">tab 2</button>
+                <ng-form ng-show="tab==1">
+                    <label >1 st tab</label>
+                    <input type="number" ng-model="input2" required="required" />
+                </ng-form>
+                <ng-form ng-show="tab==2">
+                    <label>2nd tab</label>
+                    <input type="text" ng-model="input3" required="required" />
+                </ng-form>
+            <p>Form shouldn't submit if both fields are empty or if the first is not a number.</p>
+            <input type="submit" value="submit" />
+        <form>
+-->
+<div
+ <ul class="nav nav-tabs">
+    <li  ><a data-toggle="tab" ng-click="tab=0">Fiche client</a></li>
+    <li class="actif" ><a data-toggle="tab" ng-click="tab=1" >Fiche technique</a>
+
+</li>
+    <li ><a data-toggle="tab" ng-click="tab=2"> Pièces</a></li>
+  </ul>
+<br/>
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active"  ng-show="tab==0">
+     <div class="modal-body" style="margin-top: 20px !important;">
+   <form name="form.clientForm" class="form-horizontal"  >
+		  
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Nom</b></label>
+                          <div class="col-sm-8">
+                            <input type="text"  name="nom" ng-if="fichediag.nom == null"  ng-model="clientForm.nom" class="form-control"  />
+							     <input type="text" name="nom"  ng-if="fichediag.nom != null"  ng-init="clientForm.nom =fichediag.nom" ng-model="clientForm.nom" class="form-control"  />
+                          </div>
+                        </div>
+                       
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Prénom</b></label>
+                          <div class="col-sm-8">
+                            <input type="text" name="prenom" ng-if="fichediag.prenom == null"   ng-model="clientForm.prenom"  class="form-control"  />
+							  <input type="text" name="prenom"  ng-if="fichediag.prenom != null" ng-init="clientForm.prenom =fichediag.prenom"   ng-model="clientForm.prenom"  class="form-control"  />
+                          </div>
+                        </div>
+						     <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Tel</b></label>
+                          <div class="col-sm-8">
+                         <input type="text" name="tel" ng-if="fichediag.tel == null" ng-model="clientForm.tel"  class="form-control"  />
+							  <input type="text" name="tel"  ng-if="fichediag.tel != null" ng-init="clientForm.tel =fichediag.tel" ng-model="clientForm.tel"  class="form-control"  />
+                          </div>
+                        </div>
+						  
+						    <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Email</b></label>
+                          <div class="col-sm-8">
+                         <input type="text" name="email" ng-if="fichediag.email == null" ng-model="clientForm.email" ng-init="clientForm.email ='NAN"  class="form-control"  />
+							  <input type="text" name="email" ng-if="fichediag.email != null" ng-init="clientForm.email =fichediag.email"  ng-model="clientForm.email"  class="form-control"  />
+                          </div>
+                        </div>
+						     <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Désignation</b></label>
+                          <div class="col-sm-8">
+                         <input type="text" name="designation"  ng-if="fichediag.designation == null" ng-model="clientForm.designation"  class="form-control"  />
+							     <input type="text"  name="designation"  ng-if="fichediag.designation != null" ng-init="clientForm.designation =fichediag.designation"   ng-model="clientForm.designation"  class="form-control"  />
+                          </div>
+                        </div>
+						     <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Date d'achat (dd-mm-yyyy)</b></label>
+                          <div class="col-sm-8">
+                         <input type="text" name="date_achat"  ng-if="fichediag.date_achat == null"  ng-model="clientForm.date_achat" value="{{fichediag.date_achat}}" class="form-control"  />
+							    <input type="text" name="date_achat" ng-if="fichediag.date_achat != null" ng-init="clientForm.date_achat =fichediag.date_achat"  ng-model="clientForm.date_achat" value="{{fichediag.date_achat}}" class="form-control"  />
+                          </div>
+                        </div>
+						  
+						      <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Num série</b></label>
+                          <div class="col-sm-8">
+                          <input  ng-if="fichediag.num_serie == null"  name="num_serie" class="form-control"  ng-model="clientForm.num_serie"   >
+			
+            <input  ng-if="fichediag.num_serie !=null"   name="num_serie" class="form-control" ng-model="clientForm.num_serie" ng-init="clientForm.num_serie =fichediag.num_serie"  >
+                          </div>
+                        </div>
+						     
+						       <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>Garantie</b> </label>
+                          <div class="col-sm-7">
+<!--
+                              <input type="text" name="garantie" ng-if="fichediag.garantie == null" ng-model="clientForm.garantie" value="{{fichediag.garantie}}"  /> 
+							  <input type="text" name="garantie"  ng-if="fichediag.garantie != null" ng-init="clientForm.garantie =fichediag.garantie" ng-model="clientForm.garantie" value="{{fichediag.garantie}}"  /> 
+-->
+
+						
+                              <input id="optionsRadios3" type="radio" name="garantie" ng-init="clientForm.garantie =fichediag.garantie"    value="Yes"  ng-model="clientForm.garantie"  >
+                            
+                              <label for="optionsRadios1">Yes</label>
+						    <input id="optionsRadios4" type="radio" name="garantie"  ng-init="clientForm.garantie =fichediag.garantie"   value="Non"  ng-model="clientForm.garantie"  >
+                              <label for="optionsRadios4">Non</label>  
+							  
+                         </div>
+                        </div>
+						  
+						       <div class="line"></div>
+						    <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Panne à signaler</b> </label>
+<!--                          <div class="col-sm-8">-->
+<!--                         <textarea ng-model="fiche.panne" class="form-control"></textarea>-->
+<!--
+							  <input  name="panne_client" ng-if="fichediag.panne_client == null"  ng-model="clientForm.panne_client" value="{{fichediag.panne_client}}" />
+							    <input  name="panne_client" ng-if="fichediag.panne_client != null" ng-init="clientForm.panne_client =fichediag.panne_client" ng-model="clientForm.panne_client" value="{{fichediag.panne_client}}" />
+							  
+-->
+<!--                          </div>-->
+								
+								
+								
+				 
+				  <div class="col-sm-8">
+
+							  <select  ng-model="clientForm.panne_client" name="panne_client" ng-change="changeOther()" class="form-control" ng-init="clientForm.panne_client =fichediag.panne_client">
+							  <option value="Power Supply">Power Supply</option>
+								  <option value="Noise">Noise</option>
+								    <option value="Input channel">Input channel</option>
+								  <option value="Output channel">Output channel</option>
+								   <option value="not working">Not working</option>
+								  <option value="Other" >Other</option>
+								  
+							  </select>
+							  <input ng-if="clickedButton" type="text" ng-model="clientForm.panne_client" />
+					  
+		               </div>
+				 
+								
+								
+                        </div>
+						  
+						  
+                        <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>J'autorise la réparation intégrale</b> </label>
+                          <div class="col-sm-7">
+<!--
+                             
+						    <input id="optionsRadios2" name="reparation" ng-if="fichediag.reparation == null"  ng-model="clientForm.reparation" type="text" value="{{fichediag.reparation}}" class="form-control" />
+							    <input id="optionsRadios2" name="reparation" ng-if="fichediag.reparation != null"  ng-model="clientForm.reparation" ng-init="clientForm.reparation =fichediag.reparation" type="text" value="{{fichediag.reparation}}" class="form-control"  />
+-->
+							  <input id="op1" type="radio" ng-init="clientForm.reparation =fichediag.reparation" value="Oui" name="reparation"  ng-model="clientForm.reparation">
+                              <label for="optionsRadios2">Oui</label>
+                         
+						    <input id="op2" type="radio"  ng-init="clientForm.reparation =fichediag.reparation"  value="Non" name="reparation" ng-model="clientForm.reparation">
+                              <label for="optionsRadios2">Non</label>
+                              
+                         </div>
+                        </div>
+						  <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>Frais diagnostic</b> </label>
+                          <div class="col-sm-7">
+<!--
+							  <input type="text" name="frais_diagnostic"  ng-if="fichediag.reparation == null" ng-model="clientForm.frais_diagnostic" value="{{fichediag.frais_diagnostic}}" class="form-control"/>
+							  <input type="text" name="frais_diagnostic"  ng-if="fichediag.reparation != null" ng-init="clientForm.frais_diagnostic =fichediag.frais_diagnostic"  ng-model="clientForm.frais_diagnostic" value="{{fichediag.frais_diagnostic}}" class="form-control " />
+-->
+							    <div class="col-sm-7">
+                           <select name="frais_diagnostic" ng-init="clientForm.frais_diagnostic =fichediag.frais_diagnostic"  ng-model="clientForm.frais_diagnostic">
+							<option value="Payé">Payé</option>
+							<option value="Non payé">Non payé</option>
+							  </select>
+                         </div>
+							</div>
+                        </div>
+
+		  	 
+		  
+	
+		  
+			 
+<!--
+			       <input type="text" ng-if="fichediag.personnel == null" ng-model="fichediag.personnel" name="personnel" class="form-control" />
+		 <input ng-if="fichediag.personnel != null" type="text"  ng-model="fichediag.personnel" name="personnel" ng-init="ficheForm.personnel =fichediag.personnel" class="form-control" />	
+-->
+							    <div class="line"></div>
+					<div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Prise en charge par Mr:</b></label>
+                          <div class="col-sm-8">
+                       <select name="personnel" ng-init="clientForm.personnel =fichediag.personnel" ng-model="clientForm.personnel">
+							   <option value="Firas"> Firas</option>
+                <option value="Badr"> Badr</option>
+						    <option value="Anouar" >Anouar</option>
+							  </select>
+                          </div>
+                        </div>
+			
+		
+		
+    <div class="modal-footer">
+		  <button class="btn btn-primary" ng-click="updateClient(id)" >Mettre à jour</button>
+		          <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+		  </div>
+                      </form>
+	
+     </div>
+    </div>
+    <div id="menu1" class="tab-pane fade in active" ng-show="tab==1">
+  
+	
+      <form name="form.ficheForm" ng-submit="subUpdateForm(id)"  >
+		
+	
+    <div class="modal-body" style="margin-top:20px !important;">
+	<h3 ng-if="fichediag.reparation=='Oui'">Réparation</h3>
+	<h3 ng-if="fichediag.reparation=='Non'">Devis</h3>
+		    <div class="col-xs-12" style="margin-bottom:10px !important">
+		<div class="form-inline">
+        <div class="form-group col-xs-5">
+            <label>Num de série</label>
+			  <input  ng-if="fichediag.num_serie == null"  name="num_serie" class="form-control"  ng-model="ficheForm.num_serie"  required >
+			
+            <input  ng-if="fichediag.num_serie !=null"   name="num_serie" class="form-control" ng-model="ficheForm.num_serie" ng-init="ficheForm.num_serie =fichediag.num_serie" required >
+			 </div>
+			
+
+			
+			 <div class="form-group col-xs-5" >
+			 <label>Panne signalée</label>
+            <textarea  ng-if="fichediag.panne_signaler == null"  name="panne_signaler"  ng-model="ficheForm.panne_signaler"  class="form-control"   required></textarea>
+            <textarea ng-if="fichediag.panne_signaler != null" name="panne_signaler" ng-model="ficheForm.panne_signaler"  class="form-control"   ng-init="ficheForm.panne_signaler =fichediag.panne_signaler" required></textarea>
+			
+			
+		</div>
+
+</div>
+		</div>
+		
+			    <div class="col-xs-12" style="margin-bottom:10px !important">
+		<div class="form-inline">
+			
+        <div class="form-group col-xs-5">
+            <label>Diagnostic</label>
+            <textarea  ng-if="fichediag.diagnostic == null"  name="diagnostic" ng-model="ficheForm.diagnostic"  class="form-control" required ></textarea>
+            <textarea ng-if="fichediag.diagnostic != null" name="diagnostic" ng-model="ficheForm.diagnostic"  class="form-control" ng-init="ficheForm.diagnostic =fichediag.diagnostic" required></textarea>
+			
+        </div>
+
+			<div class="form-group col-xs-5">
+            <label>Prix de réparation</label>
+            <input ng-if="fichediag.prix_reparation == null"   class="form-control"  name="prix_reparation" ng-model="ficheForm.prix_reparation" required >
+			  <input  ng-if="fichediag.prix_reparation != null" class="form-control" name="prix_reparation"   ng-init="ficheForm.prix_reparation =fichediag.prix_reparation" ng-model="ficheForm.prix_reparation"  required >
+        </div>		
+					
+					
+					</div>
+		</div>
+		
+<!--
+		
+<table  class="table">
+	<thead class="active"><th>Désignation</th><th>référence</th><th>Qte</th><th>Prix</th><th>Prix</th></thead>
+		<tbody><tr ng-repeat="piece in pieces"  class="active">
+			<td><input type="text" style="max-width:100px" name="designationpiece[{{$index}}]" ng-model="userForm.designationpiece[$index]" ng-init="userForm.designationpiece[$index]=piece.designation_piece" disabled></td>
+			<td><input type="text"  style="max-width:100px" name="referencepiece[{{$index}}]" ng-model="userForm.referencepiece[$index]" ng-init="userForm.referencepiece[$index]=piece.reference_piece" disabled></td>
+			<td><input type="text"  style="max-width:40px" name="qtepiece[{{$index}}]" ng-model="userForm.qtepiece[$index]" ng-init="userForm.qtepiece[$index]=piece.qte_piece" disabled></td>
+			<td><input type="text"  style="max-width:40px" name="prixpiece[{{$index}}]" ng-model="userForm.prixpiece[$index]" ng-init="userForm.prixpiece[$index]=piece.prix_piece" disabled></td>
+<td><a class="btn btn-danger"  ng-click="remove($index,piece._id)">X</a></td>
+			</tr></tbody>
+	</table>
+		<td>&nbsp; <a class="btn btn-success" style="width:40px !important" ng-click="nbr = nbr + 1;showNbrPieces(nbr,id)">+</a>
+</td>
+-->
+
+<!--
+ <div ng-if="isClicked">
+		<table  ng-repeat="c in nbrnewpieces" class="table">
+		<thead class="active"><th>Désignation</th><th>référence</th><th>Qte</th><th>Etat</th><th ></th></thead><tbody>
+				 <tr class="active">
+					 <td><input type="text" name="designationpiece[{{c-1}}]" style="max-width:100px" ng-model="userForm.designationpiece[c-1]"></td>
+				 <td><input type="text" name="referencepiece[{{c-1}}]" ng-model="userForm.referencepiece[c-1]" style="max-width:100px"></td>
+					 <td><input type="number"  style="max-width:40px" name="qtepiece[{{c-1}}]" ng-model="userForm.qtepiece[c-1]"></td>
+				<td><input name="choix[{{c-1}}]" ng-model="userForm.choix[c-1]" ng-change="changeCountPiece(c-1)" style="max-width:100px" /></td>
+			<td><input type="number" name="prixpiece[{{c-1}}]" ng-model="userForm.prixpiece[c-1]" style="max-width:55px"></td>
+				 </tr></tbody>
+				 </table>
+			 </div>
+-->
+        <div class="col-xs-12" style="margin-bottom:10px !important">
+		<div class="form-inline">
+		   
+		<div class="form-group col-xs-5">
+            <label>Remarques / Observation</label>
+			 <textarea  ng-if="fichediag.prix_reparation == null"   ng-model="ficheForm.observation" name="observation" class="form-control"   ></textarea>
+			 <textarea ng-if="fichediag.observation != null"  ng-init="ficheForm.observation =fichediag.observation"  ng-model="ficheForm.observation" name="observation" class="form-control"  ></textarea>
+        </div>
+			
+		     <div class="form-group col-xs-5">
+            <label>Statut</label>
+           <select  ng-if="fichediag.statut == null"   name="statut" class="form-control" ng-model="ficheForm.statut" >
+			 <option>PENDING</option>
+			   <option>COMPLETED</option>
+			 </select>
+			
+				 
+				  <select  ng-if="fichediag.statut != null"  ng-init="ficheForm.statut =fichediag.statut" name="statut" class="form-control" ng-model="ficheForm.statut" >
+			 <option>PENDING</option>
+			   <option>COMPLETED</option>
+			 </select>
+			
+          
+			 </div>	
+			
+			
+		</div>
+    </div>
+		
+	
+		  
+		    <div class="col-xs-12" style="margin-bottom:10px !important">
+		<div class="form-inline">
+			 <div class="form-group col-xs-5" >
+			   <label>Réréparation</label>
+				 <br/>
+           <select  ng-if="fichediag.rerepare == null"  name="rerepare" class="form-control" ng-model="ficheForm.rerepare" >
+			 <option>YES</option>
+			   <option>NO</option>
+			 </select>
+				 
+				   <select ng-if="fichediag.rerepare != null" name="rerepare" ng-model="ficheForm.rerepare"  class="form-control"   ng-init="ficheForm.rerepare =fichediag.rerepare" >
+			 <option>YES</option>
+			   <option>NO</option>
+			 </select>
+           
+			
+		</div>
+			
+			
+		   <div class="form-group col-xs-5" >
+            <label>Priorité</label>
+           <select   ng-if="fichediag.priority ==null"  name="priority" class="form-control" ng-model="ficheForm.priority" >
+			 <option>HIGH</option>
+			   <option>LOW</option>
+			 </select>
+			
+            <select  ng-if="fichediag.priority !=null"   name="priority" class="form-control" ng-model="ficheForm.priority" ng-init="ficheForm.priority =fichediag.priority" >
+				 <option>HIGH</option>
+			   <option>LOW</option>
+				   </select>
+			 </div>	
+			
+
+</div>
+		</div>
+			<div class="col-xs-12" style="margin-bottom:10px !important" >
+		<div class="form-inline">
+			
+			<!--<p ng-if="fichediag.etat == 'true'" style="color:red; font-weight: bold" >Fiche conclue</p>-->
+				 <div class="form-group col-xs-5" >
+			<label>Etat fiche </label>
+			<select class="form-control" name="etat" ng-model="ficheForm.etat" ng-change="etat()"   >
+			<option value="devis">Devis</option>
+			<option value="true">Cloturé</option>
+			
+			</select>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+				 
+			
+			
+				</div>
+		
+		</div>
+
+		 	 <div class="form-group col-xs-5" ng-if="fichediag.etat == 'true' "  >
+			 <label>Traité le : {{fichediag.date_sortie}}</label>
+            
+		</div>
+    <div class="modal-footer"  >
+      <!--<div class="modal-footer" >-->
+        <input type="submit" class="btn btn-primary" name="btn1"  value="Sauvegarder" />
+        <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+    </div>
+		
+		
+	</div>
+ </form>
+    </div>
+	
+    <div id="menu2" class="tab-pane fade in active" ng-show="tab==2">
+  
+<table  class="table">
+	<thead class="active"><th>Désignation</th><th>référence</th><th>Qte</th><th>Prix</th></thead>
+		<tbody><tr ng-repeat="piece in pieces"  class="active">
+			<td><input type="text" style="max-width:100px" name="designationpiece[{{$index}}]" ng-model="userForm.designationpiece[$index]" ng-init="userForm.designationpiece[$index]=piece.designation_piece" disabled></td>
+			<td><input type="text"  style="max-width:100px" name="referencepiece[{{$index}}]" ng-model="userForm.referencepiece[$index]" ng-init="userForm.referencepiece[$index]=piece.reference_piece" disabled></td>
+			<td><input type="text"  style="max-width:40px" name="qtepiece[{{$index}}]" ng-model="userForm.qtepiece[$index]" ng-init="userForm.qtepiece[$index]=piece.qte_piece" disabled></td>
+			<td><input type="text"  style="max-width:40px" name="prixpiece[{{$index}}]" ng-model="userForm.prixpiece[$index]" ng-init="userForm.prixpiece[$index]=piece.prix_piece" disabled></td>
+{{userForm.designationpiece[$index]=piece.designation_piece}}
+			</tr></tbody>
+	</table>
+
+		<form name="form.userForm" ng-submit="submitForm(id)">
+			   <div class="modal-body" style="margin-top:20px !important;">
+				    <h3>Pièces</h3>
+
+            
+			<table  class="table">
+	<thead class="active"><th>Référence </th><th>Qte</th><th>Prix</th></thead>
+		<tbody><tr class="active">
+			<td>
+        <select name="reference_piece" ng-model="userForm.reference_piece" ng-change="showStock()" style="max-width:120px" >
+          <option  ng-repeat="p in all_pieces" ng-selected="userForm.reference_piece == p.reference_piece" value="{{p.reference_piece}}" > {{p.reference_piece}}</option>
+          </select>
+
+
+        <!--<input type="text" style="max-width:100px" name="designation_piece" ng-model="userForm.designation_piece" ></td>-->
+			<!--<td><input type="text"  style="max-width:100px" name="reference_piece" ng-model="userForm.reference_piece"></td>-->
+			<td><input type="number"  ng-if="clickeSelect==true" value="{{stock_dispo}}" style="max-width:40px" name="qte_piece" ng-model="userForm.qte_piece"></td>
+	
+			<td ><input type="number" name="prix_piece" ng-model="userForm.prix_piece" style="max-width:55px"></td>
+<td>
+		<tr><td>&nbsp;<a class="btn btn-success" style="width:80px !important" ng-click="count = count + 1;show(count,id)">+ Pièces</a>
+</td>
+			</tr>
+	</table>
+
+	<!--<div ng-if="isClicked">
+			 <table  ng-repeat="c in currentcount" class="table">
+					<thead class="active"><th>Désignation</th><th>référence</th><th>Qte</th><th>Etat</th></thead><tbody><tr class="active"><td><input type="text" style="max-width:100px"></td><td><input type="text"  style="max-width:100px">{{currentcount[c]}}</td><td><input type="text"  style="max-width:100px"></td><td><select><option>Disponible</option><option>Non disponible</option></select></td></tr></tbody>
+				 </table>
+			 </div>-->
+		<div ng-if="isClicked">
+		<table  ng-repeat="c in currentcount" class="table">
+			
+		<thead class="active"><th>Désignation</th><th>référence</th><th>Qte</th><th>Etat</th><th>Prix</th></thead><tbody>
+				 <tr class="active">
+					 <td><input type="text" name="designationpiece[{{currentcount[c-1]}}]" style="max-width:100px" ng-model="userForm.designationpiece[currentcount[c-1]]"></td>
+				 <td><input type="text" name="referencepiece[{{currentcount[c-1]}}]" ng-model="userForm.referencepiece[currentcount[c-1]]" style="max-width:100px"></td>
+					 <td><input type="number"  style="max-width:40px" name="qtepiece[{{currentcount[c-1]}}]" ng-model="userForm.qtepiece[currentcount[c-1]]"></td>
+					 <td><select name="choix[{{currentcount[c-1]}}]" ng-model="userForm.choix[currentcount[c-1]]" ng-change="changeCount(currentcount[c-1])" style="max-width:100px" ><option  value="dispo">Dispo</option><option value="Indispo">Indispo</option></select></td>
+			<td ><input type="number" name="prixpiece[{{currentcount[c-1]}}]" ng-model="userForm.prixpiece[currentcount[c-1]]" style="max-width:55px"></td>
+				 </tr></tbody>
+				 </table>
+			 </div>
+			
+<div class="modal-footer">
+        <input type="submit" class="btn btn-primary" name="btn2" value="Sauvegarder" />
+        <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+    </div>
+</form>
+
+				</tbody>
+				   </table>
+           
+           
+           </div>
+
+  </div>
+ 
+</div>

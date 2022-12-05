@@ -1,0 +1,211 @@
+                     
+
+<section>
+ <!-- Form Elements -->
+                  <div class="card">
+           
+					  
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Fiche Réparation</h3>
+                    </div>
+
+                    <div ng-if="success==true" class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Modification réussie !</strong> 
+</div>
+
+                    <div class="card-body">
+                      <form class="form-horizontal">
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Nom</b></label>
+                          <div class="col-sm-8">
+                            <input type="text" ng-model="fiche.nom" class="form-control">
+                          </div>
+                        </div>
+                       
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Prénom</b></label>
+                          <div class="col-sm-8">
+                            <input type="text" ng-model="fiche.prenom" class="form-control">
+                          </div>
+                        </div>
+						     <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Tel</b></label>
+                          <div class="col-sm-8">
+                         <input type="text" ng-model="fiche.tel" class="form-control">
+                          </div>
+                        </div>
+						  
+						    <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Email</b></label>
+                          <div class="col-sm-8">
+                         <input type="email" ng-model="fiche.email" class="form-control">
+                          </div>
+                        </div>
+						     <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Désignation</b></label>
+                          <div class="col-sm-8">
+                         <input type="text" ng-model="fiche.designation" class="form-control">
+                          </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Marque</b></label>
+                          <div class="col-sm-8">
+                        <select ng-model="fiche.marque" class="form-control">
+                          <option>YAMAHA</option>
+                          <option>SOUNDKING</option>
+                            <option>STUDIOMASTER</option>
+                                <option>VERSE</option>
+                                    <option>CASIO</option>
+                                         <option>LINE 6</option>
+                                              <option>SKYLARK</option>
+                                               <option>SHUBERT</option>
+                                                  <option>OMNITRONIC</option>
+                                                     <option>CARLSBRO</option>
+                                                        <option>AUTRE</option>
+                                                        
+
+                        </select>
+                          </div>
+                        </div>
+						   <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Date d'entrée </b></label>
+                          <div class="col-sm-8">
+                         <input type="date" ng-model="fiche.date" class="form-control">
+                          </div>
+                        </div>
+						     
+						  <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Date d'achat</b></label>
+                          <div class="col-sm-8">
+                         <input type="text" ng-model="fiche.date_achat" class="form-control">
+                          </div>
+                        </div>
+						  
+						      <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Num série</b></label>
+                          <div class="col-sm-8">
+                         <input type="text" ng-model="fiche.num_serie" class="form-control">
+                          </div>
+                        </div>
+						     
+						       <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>Garantie</b> </label>
+                          <div class="col-sm-7">
+                              <input id="optionsRadios1" type="radio"  value="Yes" ng-model="fiche.garantie">
+                              <label for="optionsRadios1">Yes</label>
+						    <input id="optionsRadios2" type="radio" value="No" ng-model="fiche.garantie">
+                              <label for="optionsRadios2">No</label>
+                         </div>
+                        </div>
+						  
+						       <div class="line"></div>
+						    <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Panne à signaler</b> </label>
+                          <div class="col-sm-8">
+<!--                         <textarea ng-model="fiche.panne" class="form-control"></textarea>-->
+							  <select ng-model="fiche.panne_client" name="singleSelect" ng-change="change()"  class="form-control">
+							  <option value="Power Supply">Power Supply</option>
+								  <option value="Noise">Noise</option>
+								    <option value="Input channel">Input channel</option>
+								  <option value="Output channel">Output channel</option>
+								   <option value="not working">Not working</option>
+								  <option value="Other" >Other</option>
+								  
+							  </select>
+							  <input ng-if="clickedButton" type="text" ng-model="fiche.panne_client" />
+                          </div>
+                        </div>
+						  
+<!--
+						  
+						  		       <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" >Rerepare </label>
+                          <div class="col-sm-7">
+                   <input type="checkbox" ng-model="fiche.rerepare"  ng-init="fiche.rerepare == false"  ng-checked="fiche.rerepare == true" >
+                         </div>
+                        </div>
+						  
+						  <div ng-if="fiche.rerepare == true">
+						   <div class="line"></div>
+						   <div  class="form-group row">
+                          <label class="col-sm-2 form-control-label" >Dernière Réparation: </label>
+                          <div class="col-sm-7">
+                              <input type="text"  ng-model="fiche.derniere_reparation" />
+                         </div>
+                        </div>
+						   <div class="line"></div>
+						
+						  
+						  </div>
+-->
+						   
+						  
+						  
+                        <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>J'autorise la réparation intégrale</b> </label>
+                          <div class="col-sm-7">
+                              <input id="optionsRadios1" type="radio"  value="Oui" ng-model="fiche.reparation">
+                              <label for="optionsRadios2">Oui</label>
+						    <input id="optionsRadios2" type="radio" value="Non" name="fiche.reparation" ng-model="fiche.reparation">
+                              <label for="optionsRadios2">Non</label>
+                         </div>
+                        </div>
+						  <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label" ><b>Frais diagnostic</b> </label>
+                          <div class="col-sm-7">
+                           <select ng-model="fiche.frais_diagnostic"  class="form-control">
+							<option value="Payé">Payé</option>
+							<option value="Non payé">Non payé</option>
+							  </select>
+                         </div>
+                        </div>
+						
+					       <div class="line"></div>
+                        <div class="form-group row">
+                          <label class="col-sm-2 form-control-label"><b>Prise en charge par Mr:</b></label>
+                          <div class="col-sm-8">
+                       <select name="personnel" ng-model="fiche.personnel"  class="form-control">
+							     <option value="Firas" > Firas</option>
+                <option value="Badr"> Badr</option>
+						    <option value="Anouar" >Anouar</option>
+							  </select>
+                          </div>
+                        </div>
+						  
+                       <div class="line"></div>
+                        <div class="form-group row">
+                          <div class="col-sm-8" style="float:right">
+                
+                            <button class="btn btn-success" ng-click="createFiche()">Ajouter</button>
+                                        <button type="reset" class="btn btn-secondary" style="color:white !important">Cancel</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+              
+              </div>
+            </div>
+
+
+
+
+          </section>
+          <!-- Page Footer-->
+         
+        </div>
+      </div>
+
+   

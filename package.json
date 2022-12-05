@@ -1,0 +1,28 @@
+{
+  "name": "node-todo",
+  "version": "0.0.1",
+  "description": "Simple todo application.",
+  "main": "server.js",
+  "author": "Scotch",
+  "dependencies": {
+    "@angular/platform-server": "^9.1.0",
+    "@angular/service-worker": "^9.1.0",
+    "angular-sessionstorage": "^1.1.5",
+    "angular-ui-toggle": "0.0.4",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.5",
+    "express": "^4.10.8",
+    "express-session": "^1.15.6",
+    "method-override": "^2.3.10",
+    "mongodb": "^3.0.0",
+    "mongoose": "^5.4.20",
+    "morgan": "^1.9.0",
+    "ng-pwa-tools": "0.0.15",
+    "ng-sweet-alert": "^1.0.11",
+    "nodemailer": "^4.6.7",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "to-csv": "^0.1.1"
+  }
+}

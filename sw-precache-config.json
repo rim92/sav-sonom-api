@@ -1,0 +1,42 @@
+{
+  "importScripts": [
+    "sw-toolbox.js",
+    "runtime-caching.js"
+  ],
+  "stripPrefix": "app/",
+  "verbose": true,
+  "staticFileGlobs": [
+    "public/**.html",
+    "public/compte/**.html",
+  "public/fiche/**.html",
+  "public/templates/**.html",
+  "public/gestion/**.html",
+  "public/todos/**.html",
+    "public/img/**.*",
+    "public/dist/**.js",
+    "public/fonts/**.*",
+    "public/icons-reference/**.*",
+"public/bower_components/angular/**.*",
+"public/bower_components/angular-bootstrap-toggle/dist/**.*",
+"public/bower_components/angular-bootstrap-toggle/**.*",
+"public/bower_components/angular-load/**.*",
+"public/bower_components/angular-resource/**.*",
+"public/bower_components/angular-route/**.*",
+"public/bower_components/bootstrap/**.*",
+"public/bower_components/ng-repeat-while/**.*",
+"public/bower_components/**.*",
+"public/vendor/bootstrap/css/**.*",
+"public/vendor/bootstrap/js/**.*",
+"public/vendor/chart.js/**.*",
+"public/vendor/dropzone/**.*",
+"public/vendor/font-awesome/**.*",
+"public/vendor/jquery/**.*",
+"public/vendor/jquery.cookie/**.*",
+"public/vendor/jquery-validation/**.*",
+"public/vendor/lightbox2/**.*",
+"public/vendor/popper.js/**.*",
+    "app/runtime-caching.js",
+    "app/sw-toolbox.js",
+    "app/service-worker.js"
+  ]
+}
