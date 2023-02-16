@@ -696,10 +696,10 @@ if(err){
 	//update fiche client
 	
 		//update date entree
-	   app.put('/api/update_client/:id/:nom/:prenom/:tel/:email/:designation/:date_achat/:num_serie/:garantie/:panne_client/:reparation/:frais_diagnostic',function(req,res) {
+	   app.put('/api/update_client/:id/:nom/:prenom/:tel/:email/:designation/:marque/:date/:date_achat/:num_serie/:garantie/:panne_client/:reparation/:frais_diagnostic',function(req,res) {
 		  // console.log("idd"+req.params.id);
 	   
-  Fiche.findByIdAndUpdate({"_id":req.params.id},{$set:{nom:req.params.nom,prenom:req.params.prenom,tel:req.params.tel,email:req.params.email,designation:req.params.designation,date_achat:req.params.date_achat,num_serie:req.params.num_serie,garantie:req.params.garantie,panne_client:req.params.panne_client,reparation:req.params.reparation,frais_diagnostic:req.params.frais_diagnostic}},{new:true},function(err, cat){
+  Fiche.findByIdAndUpdate({"_id":req.params.id},{$set:{nom:req.params.nom,prenom:req.params.prenom,tel:req.params.tel,email:req.params.email,designation:req.params.designation,marque:req.params.marque,date:req.params.date,date_achat:req.params.date_achat,num_serie:req.params.num_serie,garantie:req.params.garantie,panne_client:req.params.panne_client,reparation:req.params.reparation,frais_diagnostic:req.params.frais_diagnostic}},{new:true},function(err, cat){
 if(err){
 	console.log('oops erreur ');
     res.json({error:err});
@@ -714,7 +714,7 @@ if(err){
 	
 	
 	
-	app.post('/logout', function(req, res) {
+	app.post('/api/logout', function(req, res) {
 req.logOut();
 		res.send(200);
 
